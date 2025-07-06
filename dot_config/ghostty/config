@@ -1,0 +1,54 @@
+window-theme = "dark"
+macos-titlebar-style = "hidden"
+macos-option-as-alt = true
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+adjust-cell-width = 0
+adjust-cell-height = 10%
+window-decoration = false
+
+mouse-hide-while-typing = true
+window-padding-x = 20
+window-padding-y = 20
+font-size = 14
+font-family = "MonoLisa MonoLisa"
+font-feature = +ss07
+font-feature = +ss02
+font-feature = +ss09
+font-feature = +liga
+font-feature = +ss18
+
+# Look and Feel
+adjust-cursor-thickness        = 2
+adjust-underline-position      = 3
+bold-is-bright                 = true
+cursor-invert-fg-bg            = true
+cursor-opacity                 = 0.8
+link-url                       = true
+mouse-hide-while-typing        = true
+theme                          = dark:tokyonight_night,light:tokyonight_day
+adjust-cursor-height  = 10
+adjust-box-thickness = 1
+cursor-style-blink = true
+cursor-style = bar
+unfocused-split-opacity = 0.80
+background-opacity = 0.85
+background-blur = 20
+unfocused-split-fill = 000000
+
+
+# Other
+clipboard-paste-protection     = true
+clipboard-trim-trailing-spaces = true
+copy-on-select                 = true
+quit-after-last-window-closed  = true
+scrollback-limit               = 4200
+
+# Key bindings
+keybind                        = super+left=goto_split:left
+keybind                        = super+down=goto_split:bottom
+keybind                        = super+up=goto_split:top
+keybind                        = super+right=goto_split:right
+keybind                        = super+'=new_split:down
+keybind                        = super+\=new_split:right
+keybind                        = super+t=new_tab
