@@ -1,3 +1,4 @@
+
 window-theme = "dark"
 macos-titlebar-style = "hidden"
 macos-option-as-alt = true
@@ -35,6 +36,7 @@ unfocused-split-opacity = 0.80
 background-opacity = 0.85
 background-blur = 20
 unfocused-split-fill = 000000
+quick-terminal-position = center
 
 
 # Other
@@ -52,3 +54,5 @@ keybind                        = super+right=goto_split:right
 keybind                        = super+'=new_split:down
 keybind                        = super+\=new_split:right
 keybind                        = super+t=new_tab
+keybind = global:ctrl+enter=toggle_quick_terminal
+

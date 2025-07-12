@@ -8,10 +8,11 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+]
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
@@ -52,8 +53,8 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 inherit-env-vars = true
 
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
+inner.horizontal = 15
+inner.vertical =   15
 outer.left =       18
 outer.bottom =     15
 outer.top =        15
@@ -73,17 +74,19 @@ outer.right =      18
 [mode.main.binding]
 
 #App opens
-cmd-w = "exec-and-forget open -a Ghostty"
-cmd-b = "exec-and-forget open -a Arc"
-cmd-m = "exec-and-forget open -a 'Microsoft Teams'"
+cmd-w = "exec-and-forget open -a '/Applications/Ghostty.app'"
+cmd-b = "exec-and-forget open -a '/Applications/Arc.app'"
+cmd-m = "exec-and-forget open -a '/Applications/Microsoft Teams.app'"
+cmd-g = "exec-and-forget open -a '/Applications/GitHub Desktop.app'"
+cmd-d = "exec-and-forget open -a '/Applications/TablePlus.app'"
 # i3 wraps focus by default
-alt-h =         'focus --boundaries-action wrap-around-the-workspace left'
-alt-j =         'focus --boundaries-action wrap-around-the-workspace down'
-alt-k =         'focus --boundaries-action wrap-around-the-workspace up'
-alt-l =         'focus --boundaries-action wrap-around-the-workspace right'
+alt-left =         'focus --boundaries-action wrap-around-the-workspace left'
+alt-down =         'focus --boundaries-action wrap-around-the-workspace down'
+alt-up =         'focus --boundaries-action wrap-around-the-workspace up'
+alt-right =         'focus --boundaries-action wrap-around-the-workspace right'
 
 
-alt-shift-h = 'move left'
+alt-shift-h= 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
@@ -131,8 +134,8 @@ alt-r = 'mode resize'
 [mode.resize.binding]
 h = 'resize width -50'
 j = 'resize height +50'
-k = 'resize height -50'
-l = 'resize width +50'
+k = 'resize height -50' 
+l = 'resize width +50' 
 enter = 'mode main'
 esc = 'mode main'
 
@@ -150,3 +153,4 @@ run = 'move-node-to-workspace 3'
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 1'
+
