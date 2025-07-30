@@ -57,7 +57,7 @@ inner.horizontal = 15
 inner.vertical =   15
 outer.left =       18
 outer.bottom =     15
-outer.top =        15
+outer.top =        55
 outer.right =      18
 
 
@@ -79,6 +79,8 @@ cmd-b = "exec-and-forget open -a '/Applications/Arc.app'"
 cmd-m = "exec-and-forget open -a '/Applications/Microsoft Teams.app'"
 cmd-g = "exec-and-forget open -a '/Applications/GitHub Desktop.app'"
 cmd-d = "exec-and-forget open -a '/Applications/TablePlus.app'"
+cmd-l = "exec-and-forget open -a '/Applications/Logseq.app'"
+cmd-k = "exec-and-forget open -a '/Applications/Slack.app'"
 # i3 wraps focus by default
 alt-left =         'focus --boundaries-action wrap-around-the-workspace left'
 alt-down =         'focus --boundaries-action wrap-around-the-workspace down'
@@ -143,6 +145,10 @@ esc = 'mode main'
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.logseq'
+run = 'move-node-to-workspace 4'
 
 
 [[on-window-detected]]
