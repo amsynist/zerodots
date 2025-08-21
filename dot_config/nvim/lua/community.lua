@@ -10,5 +10,6 @@ return {
 	{ import = "astrocommunity.recipes.heirline-nvchad-statusline" },
 	{ import = "astrocommunity.recipes.heirline-vscode-winbar" },
 	{ import = "astrocommunity.markdown-and-latex.markview-nvim" },
+	{ import = "astrocommunity.completion.codeium-nvim" },
 	-- import/override with your plugins folder
 }
