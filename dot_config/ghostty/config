@@ -38,7 +38,6 @@ background-blur = 20
 unfocused-split-fill = 000000
 quick-terminal-position = center
 
-
 # Other
 clipboard-paste-protection     = true
 clipboard-trim-trailing-spaces = true

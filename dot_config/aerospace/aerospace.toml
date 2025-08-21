@@ -47,21 +47,28 @@ automatically-unhide-macos-hidden-apps = false
 # Normalizations eliminate all sorts of weird tree configurations that don't make sense.
 # Give normalizations a chance and enable them back.
 enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = true
 
 # Mouse follows focus when focused monitor changes
 #on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+
+[gaps.outer]
+bottom = 10
+left = 10
+right = 10
+top = 55
+
+[key-mapping]
+preset = "qwerty"
+
+
 [exec]
 inherit-env-vars = true
 
-[gaps]
-inner.horizontal = 15
-inner.vertical =   15
-outer.left =       18
-outer.bottom =     15
-outer.top =        15
-outer.right =      18
+[gaps.inner]
+horizontal = 8
+vertical = 8
 
 
 [workspace-to-monitor-force-assignment]
@@ -83,7 +90,7 @@ cmd-m = "exec-and-forget open -a '/Applications/Microsoft Teams.app'"
 cmd-g = "exec-and-forget open -a '/Applications/GitHub Desktop.app'"
 cmd-d = "exec-and-forget open -a '/Applications/TablePlus.app'"
 cmd-l = "exec-and-forget open -a '/Applications/Logseq.app'"
-cmd-k = "exec-and-forget open -a '/Applications/Slack.app'"
+ctrl-m = "exec-and-forget open -a '/Applications/Slack.app'"
 # i3 wraps focus by default
 alt-left =         'focus --boundaries-action wrap-around-the-workspace left'
 alt-down =         'focus --boundaries-action wrap-around-the-workspace down'
