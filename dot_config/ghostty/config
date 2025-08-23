@@ -33,8 +33,8 @@ adjust-box-thickness = 1
 cursor-style-blink = true
 cursor-style = bar
 unfocused-split-opacity = 0.80
-background-opacity = 0.85
-background-blur = 20
+background-opacity = 0.80
+background-blur = 25
 unfocused-split-fill = 000000
 quick-terminal-position = center
 
@@ -54,4 +54,11 @@ keybind                        = super+'=new_split:down
 keybind                        = super+\=new_split:right
 keybind                        = super+t=new_tab
 keybind = global:ctrl+enter=toggle_quick_terminal
+# Resize splits
+keybind = ctrl+left=resize_split:left,10
+keybind = ctrl+down=resize_split:down,10
+keybind = ctrl+up=resize_split:up,10
+keybind = ctrl+right=resize_split:right,10
 
+# Equalize splits
+keybind = alt+shift+equal=equalize_splits

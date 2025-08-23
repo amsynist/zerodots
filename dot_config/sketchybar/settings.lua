@@ -1,3 +1,6 @@
+local main_font = "MonoLisa Nerd Font Mono"
+local icon_font = "SF Pro Text"
+
 return {
   display = 1,
   paddings = 5,
@@ -12,47 +15,47 @@ return {
   app = {
     offset = {
       y = 60,
-      x = 5,   
+      x = 5,
     },
     corner_radius = 2,
     font = {
       text = {
-        family = "FiraMono Nerd Font",
-        size = 14.0
+        family = main_font,
+        size = 14.0,
       },
       numbers = {
-        family = "FiraMono Nerd Font",
-        size = 14.0
+        family = main_font,
+        size = 14.0,
       },
-      icons = "SF Pro Text",               -- Used for icons (or NerdFont)
+      icons = icon_font, -- Used for icons (or NerdFont)
       style_map = {
-          ["Regular"] = "Regular",
-          ["Semibold"] = "Medium",
-          ["Bold"] = "Bold",
-          ["Heavy"] = "Bold",
-          ["Black"] = "ExtraBold"
+        ["Regular"] = "Regular",
+        ["Semibold"] = "Regular",
+        ["Bold"] = "Bold",
+        ["Heavy"] = "Bold",
+        ["Black"] = "Bold",
       },
       overrides = {
         TimeView = {
-          family = "FiraMono Nerd Font",
-          size = 2.0
-        }
-      }
-    }
+          family = main_font,
+          size = 2.0,
+        },
+      },
+    },
   },
-  icons = "sf-symbols",   -- Options: "sf-symbols", "nerdfont"
-  animated_icons = false, -- Set to true if you want to use animated icons
+  icons = "sf-symbols", -- Options: "sf-symbols", "nerdfont"
+  animated_icons = true, -- Set to true if you want to use animated icons
 
   font = {
-      text = "FiraMono Nerd Font",    -- Used for text
-      numbers = "FiraMono Nerd Font", -- Used for numbers
-      icons = "SF Pro Text",               -- Used for icons (or NerdFont)
-      style_map = {
-          ["Regular"] = "Regular",
-          ["Semibold"] = "Medium",
-          ["Bold"] = "Bold",
-          ["Heavy"] = "Bold",
-          ["Black"] = "ExtraBold"
-      }
-  }
+    text = main_font,  -- Used for text
+    numbers = main_font, -- Used for numbers
+    icons = icon_font, -- Used for icons (or NerdFont)
+    style_map = {
+      ["Regular"] = "Regular",
+      ["Semibold"] = "Regular",
+      ["Bold"] = "Bold",
+      ["Heavy"] = "Bold",
+      ["Black"] = "Bold",
+    },
+  },
 }

@@ -1,34 +1,45 @@
 return {
-  black = 0xff232a2d,
-  white = 0xffe2e2e3,
-  red = 0xffe57474,
-  green = 0xff8ccf7e,
-  blue = 0xff67b0e8,
-  yellow = 0xffe5c76b,
-  orange = 0xffd07360,
-  magenta = 0xffc47fd5,
-  grey = 0xff7f8490,
-  teal = 0xff6cbfbf,
+  -- Core colors
+  black = 0xff1a1b26, -- background
+  white = 0xffc0caf5,
+  red = 0xfff7768e,
+  green = 0xff9ece6a,
+  blue = 0xff7aa2f7,
+  yellow = 0xffe0af68,
+  orange = 0xffff9e64,
+  magenta = 0xffbb9af7,
+  grey = 0xff565f89,
+  teal = 0xff2ac3de,
   transparent = 0x00000000,
 
+  -- Bar styling (with blur)
   bar = {
-    bg = 0xFF111825,
-    border = 0xff2c2e34,
+    bg = 0x991a1b26, -- semi-transparent for blur to show through
+    border = 0xff24283b,
   },
-  popup = {
-    bg = 0xF2232634,
-    border = 0xff7f8490,
-    card = 0xff232634,
-  },
-  spaces = {
-    active = 0xff474b54,
-    inactive = 0xff474b54,
-  },
-  bg1 = 0xff282f3b,
-  bg2 = 0xff414559,
 
+  -- Popup styling
+  popup = {
+    bg = 0xcc1a1b26, -- more solid than bar, but still translucent
+    border = 0xff565f89,
+    card = 0xff24283b,
+  },
+
+  -- Spaces
+  spaces = {
+    active = 0xff3b4261,
+    inactive = 0xff1f2335,
+  },
+
+  -- Extra backgrounds
+  bg1 = 0xff1f2335,
+  bg2 = 0xff24283b,
+
+  -- Helper for alpha overlays
   with_alpha = function(color, alpha)
-    if alpha > 1.0 or alpha < 0.0 then return color end
+    if alpha > 1.0 or alpha < 0.0 then
+      return color
+    end
     return (color & 0x00ffffff) | (math.floor(alpha * 255.0) << 24)
   end,
 }

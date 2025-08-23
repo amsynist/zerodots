@@ -55,8 +55,8 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 
 [gaps.outer]
 bottom = 10
-left = 10
-right = 10
+left = 20
+right = 20
 top = 55
 
 [key-mapping]

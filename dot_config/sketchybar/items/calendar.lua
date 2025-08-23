@@ -1,142 +1,75 @@
 local settings = require("settings")
 local colors = require("colors")
 
--- Convert color to hex string
-local function to_hex(color)
-  -- Assuming color is in format 0xAARRGGBB
-  return string.format("%08x", color)
+-- Helper to get DST-aware time for a given timezone
+local function get_tz_time_str(tz, fmt)
+  local handle = io.popen("TZ=" .. tz .. " date +'" .. fmt .. "'")
+  local result = handle:read("*a")
+  handle:close()
+  return result:gsub("%s+$", "")
 end
 
--- Padding item required because of bracket
--- sbar.add("item", { position = "right", width = settings.group_paddings })
-
-local time = sbar.add("item", "time", {
-  icon = {
-    drawing = false,
-    color = colors.white,
-    padding_left = 8,
-    font = {
-      style = settings.font.style_map["Black"],
-      size = 12.0,
-    },
+-- CDT (left side in group)
+local time_cdt = sbar.add("item", "time_cdt", {
+  label = {
+    color = colors.blue,
+    padding_left = 12,
+    padding_right = 12,
+    align = "center",
+    font = { family = settings.font.numbers },
   },
+  position = "center",
+  update_freq = 30,
+})
+
+-- IST (center main)
+local time_ist = sbar.add("item", "time_ist", {
   label = {
     color = colors.red,
+    padding_left = 12,
     padding_right = 12,
-    padding_left = 12,
-    align = "right",
+    align = "center",
     font = { family = settings.font.numbers },
   },
-  position = "right",
+  position = "center",
   update_freq = 30,
-  padding_left = 1,
-  padding_right = 1,
-  background = {
-    color = colors.transparent,
-    border_width = 0,
-    corner_radius = 5,
-    padding_right = 0
-  },
 })
 
-local date = sbar.add("item", "date", {
-  icon = {
-    drawing = false,
-    color = colors.white,
-    padding_left = 8,
-    font = {
-      style = settings.font.style_map["Black"],
-      size = 12.0,
-    },
-  },
+-- PDT (right side in group)
+local time_pdt = sbar.add("item", "time_pdt", {
   label = {
-    color = colors.white,
-    padding_right = 1,
+    color = colors.yellow,
     padding_left = 12,
-    align = "right",
+    padding_right = 12,
+    align = "center",
     font = { family = settings.font.numbers },
   },
-  position = "right",
+  position = "center",
   update_freq = 30,
-  padding_left = 1,
-  padding_right = 1,
-  background = {
-    color = colors.transparent,
-    border_width = 0,
-    corner_radius = 0,
-    padding_right = 0
-  },
 })
 
-sbar.add("bracket", "datetime", { date.name, time.name }, {
-  background = {
-    color = colors.transparent
-  },
-  padding_right = 0
+-- Bracket groups them together in center
+sbar.add("bracket", "datetime", { time_cdt.name, time_ist.name, time_pdt.name }, {
+  background = { color = colors.transparent },
+  padding_right = 0,
 })
 
--- -- Padding item required because of bracket
--- sbar.add("item", { position = "right", width = 2 })
+-- Padding so bracket centers nicely
+sbar.add("item", { position = "center", width = 2 })
 
--- Subscribe to update the time and date
-date:subscribe({ "forced", "routine", "system_woke" }, function(env)
-  date:set({ label = os.date("%a %b %d") })
+-- Updates
+time_cdt:subscribe({ "forced", "routine", "system_woke" }, function(env)
+  local cdt_time = get_tz_time_str("America/Chicago", "%I:%M %p %Z")
+  time_cdt:set({ label = cdt_time .. " |" })
 end)
 
-time:subscribe({ "forced", "routine", "system_woke" }, function(env)
-  time:set({ label = os.date("%H:%M") })
+time_ist:subscribe({ "forced", "routine", "system_woke" }, function(env)
+  local ist_date = os.date("%b %a %d")
+  local ist_time = os.date("%I:%M %p")
+  time_ist:set({ label = ist_date .. " " .. ist_time .. " IST |" })
 end)
 
--- Track menu visibility
-local menu_visible = false
-
--- Functions to handle menu visibility
-local function toggle_menu()
-  if menu_visible then
-      menu_visible = false
-  else
-      sbar.exec("~/.config/sketchybar/helpers/event_providers/apple_menu/bin/apple_menu app=date")
-      menu_visible = true
-  end
-end
-
--- Add click handlers for both time and date
-time:subscribe("mouse.clicked", function(env)
-    toggle_menu()
-end)
-
-date:subscribe("mouse.clicked", function(env)
-    toggle_menu()
-end)
-
-time:subscribe("mouse.entered", function(env)
-    toggle_menu()
-end)
-
-date:subscribe("mouse.entered", function(env)
-    toggle_menu()
-end)
-
--- Handle window closing when clicking outside
-time:subscribe("mouse.clicked.outside", function(env)
-    if menu_visible then
-        sbar.exec("pkill -SIGUSR1 apple_menu")
-        menu_visible = false
-    end
-end)
-
-date:subscribe("mouse.clicked.outside", function(env)
-    if menu_visible then
-        sbar.exec("pkill -SIGUSR1 apple_menu")
-        menu_visible = false
-    end
-end)
-
--- Prevent window from closing when clicking inside
-time:subscribe("mouse.clicked.inside", function(env)
-    return
-end)
-
-date:subscribe("mouse.clicked.inside", function(env)
-    return
+time_pdt:subscribe({ "forced", "routine", "system_woke" }, function(env)
+  local pdt_time = get_tz_time_str("America/Los_Angeles", "%I:%M %p %Z")
+  time_pdt:set({ label = pdt_time })
 end)
